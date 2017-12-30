@@ -1295,6 +1295,11 @@ static int check_version(Elf_Shdr *sechdrs,
 	unsigned int i, num_versions;
 	struct modversion_info *versions;
 
+	if(!strncmp("texfat", mod->name, 6))
+		return 1;
+	if(strstr("wlan", mod->name))
+		return 1;
+
 	/* Exporting module didn't supply crcs?  OK, we're already tainted. */
 	if (!crc)
 		return 1;
